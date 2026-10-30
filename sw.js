@@ -1,5 +1,19 @@
-const CACHE="marma-insight-v3";
-const CORE=["./","./index.html","./styles.css","./app.js","./firebase-config.js","./manifest.json","./assets/icon.png","./assets/icon-192.png","./assets/icon-512.png","./assets/icon-maskable-512.png","./assets/apple-touch-icon.png","./assets/favicon-32x32.png"];
-self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting())));
-self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
-self.addEventListener("fetch",event=>{if(event.request.method!=="GET"||new URL(event.request.url).origin!==location.origin)return;event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));}return response;}).catch(()=>caches.match("./index.html"))))});
+const CACHE = "marma-insight-v3";
+const CORE = [
+  "./", "./index.html", "./styles.css", "./app.js", "./firebase-config.js", "./manifest.json",
+  "./icon.png", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png",
+  "./apple-touch-icon.png", "./favicon-16x16.png", "./favicon-32x32.png", "./favicon-48x48.png"
+];
+self.addEventListener("install", event => {
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
+});
+self.addEventListener("activate", event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim()));
+});
+self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET" || new URL(event.request.url).origin !== location.origin) return;
+  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
+    if (response.ok) { const copy = response.clone(); caches.open(CACHE).then(cache => cache.put(event.request, copy)); }
+    return response;
+  }).catch(() => caches.match("./index.html"))));
+});

@@ -1,0 +1,11 @@
+MarmaInsight - corrected GitHub Pages package
+
+আপনার বর্তমান GitHub repository-র root-এ থাকা ফাইলগুলোর সঙ্গে এই ZIP-এর সব ফাইল merge/replace করুন।
+গুরুত্বপূর্ণ: ZIP-এর ভেতরের ফাইলগুলো সরাসরি repository root-এ থাকবে; অতিরিক্ত MarmaInsight-Corrected ফোল্ডারের ভেতরে রাখবেন না।
+
+এই প্যাকেজে Icon path root অনুযায়ী ঠিক করা হয়েছে: ./icon.png, ./favicon-32x32.png ইত্যাদি।
+
+Upload শেষে Commit changes দিন। GitHub Pages deploy শেষ হলে Ctrl+Shift+R দিয়ে refresh করুন।
+পুরোনো PWA cache থাকলে Chrome DevTools > Application > Service Workers থেকে Unregister করে reload করুন; অথবা browser site data clear করুন।
+
+Firebase configuration আগের মতো firebase-config.js-এ আছে। Firestore rules deploy না করা পর্যন্ত production-এ public writes enable করবেন না।
