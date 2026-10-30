@@ -4,14 +4,15 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#075b58"><meta name="description" content="MarmaInsight — culture, heritage, stories and community.">
   <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="MarmaInsight">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png"><link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png"><link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+  <meta name="msapplication-TileImage" content="./assets/icon-192.png">
   <title>MarmaInsight</title>
-  <link rel="manifest" href="manifest.json"><link rel="icon" href="assets/icon.png">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="./manifest.json"><link rel="icon" href="./assets/icon.png">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="#"><img src="assets/icon.png" alt=""><span>MarmaInsight</span></a>
+  <a class="brand" href="#"><img src="./assets/icon.png" alt=""><span>MarmaInsight</span></a>
   <button id="menuBtn" class="menu" aria-label="Open menu">☰</button>
   <nav id="nav">
     <a href="#home">Home</a><a href="#culture">Culture</a><a href="#history">History</a>
@@ -24,7 +25,7 @@
     <div><p class="eyebrow">OUR CULTURE · OUR HERITAGE · OUR COMMUNITY</p><h1>Discover the world of<br><span>Marma people.</span></h1>
     <p class="lead">A community space to preserve heritage, share stories, celebrate traditions and stay connected.</p>
     <a class="btn" href="#culture">Explore MarmaInsight</a></div>
-    <img class="heroIcon" src="assets/icon.png" alt="MarmaInsight icon">
+    <img class="heroIcon" src="./assets/icon.png" alt="MarmaInsight icon">
   </section>
   <section class="intro"><h2>Explore MarmaInsight</h2><p>Discover, contribute and connect through the stories and traditions of the Marma community.</p></section>
   <section id="culture" class="contentSection"><div class="sectionHead"><div><p class="eyebrow">IDENTITY & TRADITION</p><h2>Culture</h2></div></div><div id="cultureGrid" class="cards"></div></section>
@@ -40,7 +41,7 @@
     <h3>Manage published content</h3><div id="manageList"></div>
   </section>
 </main>
-<footer><img src="assets/icon.png" alt=""><span>© <span id="year"></span> MarmaInsight</span><span>Culture · Heritage · Community</span></footer>
+<footer><img src="./assets/icon.png" alt=""><span>© <span id="year"></span> MarmaInsight</span><span>Culture · Heritage · Community</span></footer>
 <dialog id="authDialog"><form method="dialog" class="dialogForm"><button class="close" value="cancel">×</button><h2>Welcome to MarmaInsight</h2><p>Sign in to contribute to the community.</p><input id="email" type="email" placeholder="Email address" required><input id="password" type="password" placeholder="Password" required><button id="googleLogin" class="btn" type="button">Continue with Google</button><button id="emailLogin" class="btn" type="button">Sign in / Create account</button><p id="authStatus" class="muted"></p></form></dialog>
 <dialog id="postDialog"><form method="dialog" class="dialogForm"><button class="close" value="cancel">×</button><h2>Create community post</h2><input id="postTitle" placeholder="Post title"><textarea id="postBody" rows="5" placeholder="Share something with the community"></textarea><button id="submitPost" type="button" class="btn">Submit post</button><p id="postStatus" class="muted"></p></form></dialog>
 <script type="module" src="app.js"></script>
