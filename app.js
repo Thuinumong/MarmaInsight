@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc, serverTimestamp, updateDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 import { firebaseConfig } from "./firebase-config.js";
 
@@ -13,6 +13,7 @@ document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>$("nav").classList.
 $("loginBtn").onclick=()=>$("authDialog").showModal();
 $("logoutBtn").onclick=()=>signOut(auth);
 $("newPostBtn").onclick=()=>{if(!currentUser){$("authDialog").showModal();return}$("postDialog").showModal()};
+$("googleLogin").onclick=async()=>{try{const provider=new GoogleAuthProvider();await signInWithPopup(auth,provider);$("authDialog").close()}catch(e){$("authStatus").textContent=e.message}};
 $("emailLogin").onclick=async()=>{try{const e=$("email").value.trim(),p=$("password").value;if(!e||p.length<6)throw Error("Valid email and password (at least 6 characters) required.");try{await signInWithEmailAndPassword(auth,e,p)}catch(err){if(err.code==="auth/invalid-credential"||err.code==="auth/user-not-found")await createUserWithEmailAndPassword(auth,e,p);else throw err}$("authDialog").close()}catch(e){$("authStatus").textContent=e.message}};
 onAuthStateChanged(auth,async user=>{currentUser=user;$("userLabel").textContent=user?.email||"Guest";$("loginBtn").classList.toggle("hidden",!!user);$("logoutBtn").classList.toggle("hidden",!user);isAdmin=false;if(user){const token=await user.getIdTokenResult(true);isAdmin=token.claims.admin===true}$("adminPanel").classList.toggle("hidden",!isAdmin);$("newPostBtn").classList.toggle("hidden",!user);renderManage()});
 const q=query(collection(db,"content"),orderBy("createdAt","desc"));
